@@ -14,7 +14,7 @@ pipeline
             {
                 steps { 
                
-               sh 'ansible-playbook localhost $WORKSPACE/ansible_nginx_playbook.yml -e "workspace=$WROKSPACE"'
+               sh 'ansible-playbook $WORKSPACE/ansible_nginx_playbook.yml -e "workspace=$WROKSPACE"'
             } 
             }
 
