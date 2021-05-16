@@ -1,6 +1,7 @@
 ---
-- hosts: localhost
-- become: true
+- name: Install Nginx  
+  hosts: localhost
+  become: true
 
 
 tasks:
@@ -8,6 +9,20 @@ tasks:
   service_facts:
 
 - name: Check if nginx is present or not  
-  fail:
-       msg: Nginx is not installed
-     when: ansible_facts.services["nginx.service"] is not defined
+  yum: 
+    name: nginx 
+    state: latest
+  when: ansible_facts.services["nginx.service"] is not defined
+
+- name: copy the latest conf file
+  copy:
+    dest: /etc/nginx/nginx.conf
+    src:  $WORKSPACE/nginx.conf
+  notify: Nginx Reload
+  
+handlers:
+- name:  Nginx Reload
+  service: 
+    name: nginx
+    state: reload   
+
