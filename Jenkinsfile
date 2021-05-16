@@ -13,8 +13,8 @@ pipeline
             stage("Install Nginx")
             {
                 steps { 
-               sh 'ansible -i $WORKSPACE/hosts -m ping'     
-               sh 'ansible-playbook  -i $WORKSPACE/hosts $WORKSPACE/ansible_nginx_playbook.yml -e "workspace=$WROKSPACE"'
+               
+               sh 'ansible-playbook localhost $WORKSPACE/ansible_nginx_playbook.yml -e "workspace=$WROKSPACE"'
             } 
             }
 
