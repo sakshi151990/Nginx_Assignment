@@ -1,7 +1,7 @@
 pipeline 
 {
     agent any
-    {
+    
         stages
         {
             stage("SCM Checkout")
@@ -13,11 +13,11 @@ pipeline
             stage("Install Nginx")
             {
                 steps { 
-               sh 'ansible-playbook  -h localhost --become true $WORKSPACE/ansible_nginx_playbook.yml'
+               sh 'ansible-playbook  -h localhost --become true $WORKSPACE/ansible_nginx_playbook.yml -e "workspace=$WROKSPACE"'
             } 
             }
 
             
         }
-    }
+    
 }
