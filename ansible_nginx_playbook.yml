@@ -25,5 +25,5 @@
     - name:  Nginx Reload
       service: 
         name: nginx
-        state: reload   
+        state: reloaded  
 
